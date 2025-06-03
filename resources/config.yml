@@ -1,0 +1,23 @@
+scraper:
+  sites:
+    # - id: pracuj.pl
+    #   url: "https://www.pracuj.pl/praca/student;kw/wroclaw;wp?rd=10&tc=2&ws=1"
+    #   selectors:
+    #     offerBox: "div[data-test='default-offer']"
+    #     title: "h2"
+    #     company: "h3"
+    #     location: "h4[data-test='text-region']"
+    #     salary: "span[data-test='offer-salary']"
+    #     url: "a[data-test='link-offer']"
+
+    - id: olx.pl
+      url: "https://www.olx.pl/praca/wroclaw/q-praca-dla-studenta/?search%5Bfilter_enum_experience%5D%5B0%5D=exp_no&search%5Bfilter_enum_type%5D%5B0%5D=parttime"
+      selectors:
+        offersContainer: 'div[data-testid="listing-grid"]'
+        offerBox: '[data-cy="l-card"]'
+        title: 'div[data-testid="l-card"] a h4'
+        company: 'div[data-testid="l-card"] div[class^="css-1lb10r"]'
+        location: 'div[data-testid="l-card"] div[class^="css-9yllbh"]:nth-of-type(2)'
+        salary: 'div[data-testid="l-card"] div[class^="css-9yllbh"]:nth-of-type(1)'
+        url: 'div[data-testid="l-card"] a[href]'
+        addInfo: 'div[data-testid="l-card"] div[class^="css-mr8xj"]'

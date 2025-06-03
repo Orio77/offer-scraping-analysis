@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# VSCode
+.vscode/
+
 # Environments
 .env
 .venv
@@ -22,5 +25,3 @@ venv.bak/
 
 # Project-specific
 logs/
-
-application.yml
