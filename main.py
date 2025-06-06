@@ -5,6 +5,7 @@ from typing import List
 from ConfigLoader import ConfigLoader
 from ScraperService import ScraperService
 from JobOffer import JobOffer
+from DatabaseConfig import DatabaseConfig
 
 def main():
     log.info("Starting the scraping process")
@@ -16,9 +17,18 @@ def main():
     log.info("Scraping the data")
     scraper = ScraperService(websites)
     offers: List[JobOffer] = scraper.scrape_all_sites()
+    log.info(f"Found {len(offers)} offers")
 
     log.info("Saving the data")
-    
+
+    database = DatabaseConfig()
+    database.create_database()
+    database.create_table()
+    database.insert_data(offers)
+
+    #for element in database.read_data():
+    #    print(element)
+
     log.info("Process completed successfully!")
 
     log.info("Send emails")
