@@ -25,3 +25,12 @@ venv.bak/
 
 # Project-specific
 logs/
+
+# GitHub Actions - keep workflows but ignore local artifacts
+!.github/
+.github/*
+!.github/workflows/
+!.github/workflows/*.yml
+
+# Pytest cache
+.pytest_cache/
