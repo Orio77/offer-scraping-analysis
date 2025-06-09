@@ -17,12 +17,13 @@ class EmailFormatService:
         
         body = f"""Job Offers Report - {datetime.now().strftime('%Y-%m-%d %H:%M')}
 
-        Total offers found: {total_offers}
-        Sites scraped: {sites_count}
-
-        JOB OFFERS:\n
+        Total new offers found: {total_offers}
         """
-        
+
+        if offers:
+            body += f"Sites scraped: {sites_count}\n"
+            body += "Offers:\n\n"
+
         for i, offer in enumerate(offers, 1):
             body += f"OFFER #{i}\n"
             
@@ -43,7 +44,6 @@ class EmailFormatService:
             
             body += "\n" + "-" * 50 + "\n\n"
         
-        body += f"Report generated automatically by Job Scraper\nTotal: {total_offers} offers found"
         return body
     
     def format_email_subject(self, offers: List[JobOffer]) -> str:
