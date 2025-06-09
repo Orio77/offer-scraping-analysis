@@ -34,3 +34,6 @@ logs/
 
 # Pytest cache
 .pytest_cache/
+
+# IntelliJ IDEA
+.idea/
