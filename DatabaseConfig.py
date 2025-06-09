@@ -2,6 +2,7 @@ import psycopg2
 from psycopg2 import sql
 from logger_config import log
 from JobOffer import JobOffer
+from typing import List
 
 
 class DatabaseConfig:
@@ -101,12 +102,15 @@ class DatabaseConfig:
 
         log.info(f"reading data from database: '{self.name}'.")
         cursor.execute('SELECT * FROM data')
-        rows = cursor.fetchall()
+        db_offers = cursor.fetchall()
         log.info(f"Data from '{self.name}' has been read.")
         self.disconnect_from_database(conn, cursor, self.name)
 
-        keys = ['url', 'title', 'company', 'location', 'salary', 'site_id', 'add_info']
-        return [dict(zip(keys, row)) for row in rows]
+        offers_to_return: List[JobOffer] = []
+        for offer in db_offers:
+            offers_to_return.append(JobOffer(offer[1], offer[2], offer[3], offer[4], offer[0], offer[5], offer[6]))
+
+        return offers_to_return
 
     def delete_database(self):
         conn, cursor = self.connect_to_database('postgres')

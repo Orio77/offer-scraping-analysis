@@ -12,7 +12,7 @@ class EmailSenderService:
         self.from_email = os.getenv('FROM_EMAIL')
         self.password = os.getenv('PASSWORD')
         self.to_emails = [email.strip() for email in os.getenv('TO_EMAILS', '').split(',') if email.strip()]
-        self.smtp_server = os.getenv('SMTP_SERVER') 
+        self.smtp_server = os.getenv('SMTP_SERVER')
         self.smtp_port = int(os.getenv('SMTP_PORT'))  
 
     def send_email(self, body, subject=None, to_emails=None):

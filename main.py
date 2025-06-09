@@ -32,8 +32,8 @@ def main():
     database.create_table()
     database.insert_data(offers)
 
-    #for element in database.read_data():
-    #    print(element)
+    # for element in database.read_data():
+    #     print(element)
 
     log.info("Process completed successfully!")
 

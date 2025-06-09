@@ -79,7 +79,10 @@ class JobOffersGUI:
             self.salary_entry.configure(state="disabled")
 
     def on_update(self):
-        pass
+        try:
+            number_of_days = int(self.days_entry.get())
+        except ValueError:
+            pass
 
     def offer_frame(self):
         self.left_frame = ctk.CTkFrame(self.app, border_width=2, corner_radius=0)
