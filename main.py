@@ -22,7 +22,6 @@ def main():
 
     log.info("Formatting the scraped data")
     formatter = EmailFormatService()
-    formatted_offers = formatter.format_job_offers_email(offers)
     log.info(f"Found {len(offers)} offers")
 
     log.info("Saving the data")
@@ -30,7 +29,9 @@ def main():
     database = DatabaseConfig()
     database.create_database()
     database.create_table()
-    database.insert_data(offers)
+    offers = database.insert_data(offers)
+
+    formatted_offers = formatter.format_job_offers_email(offers)
 
     # for element in database.read_data():
     #     print(element)
