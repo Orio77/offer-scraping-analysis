@@ -39,7 +39,7 @@ jobs:
       - name: Create .env file from secrets
         run: |
           echo "FROM_EMAIL=${{ secrets.FROM_EMAIL }}" >> .env
-          echo "PASSWORD=${{ secrets.EMAIL_PASSWORD }}" >> .env
+          echo "GMAIL_PASSWORD=${{ secrets.GMAIL_PASSWORD }}" >> .env
           echo "TO_EMAILS=${{ secrets.TO_EMAILS }}" >> .env
           echo "SMTP_SERVER=${{ secrets.SMTP_SERVER }}" >> .env
           echo "SMTP_PORT=${{ secrets.SMTP_PORT }}" >> .env

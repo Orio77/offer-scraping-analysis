@@ -70,7 +70,7 @@ scraper:
 
 ```bash
 FROM_EMAIL=your-email@gmail.com
-PASSWORD=your-app-password
+GMAIL_PASSWORD=your-app-password
 TO_EMAILS=recipient1@email.com,recipient2@email.com
 SMTP_SERVER=smtp.gmail.com
 SMTP_PORT=587

@@ -12,7 +12,7 @@ class EmailSenderService:
     def __init__(self):
         log.info("Initializing EmailSenderService")
         self.from_email = os.getenv('FROM_EMAIL')
-        self.password = os.getenv('PASSWORD')
+        self.password = os.getenv('GMAIL_PASSWORD')
         self.to_emails = [email.strip() for email in os.getenv('TO_EMAILS', '').split(',') if email.strip()]
         self.smtp_server = os.getenv('SMTP_SERVER')
         self.smtp_port = int(os.getenv('SMTP_PORT'))
