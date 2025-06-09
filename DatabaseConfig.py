@@ -67,26 +67,29 @@ class DatabaseConfig:
 
     def insert_data(self, data):
         conn, cursor = self.connect_to_database(self.name)
+        inserted_offers: List[JobOffer] = []
 
         log.info(f"Saving data to '{self.name}'.")
         for record in data:
-            record = record.to_dict()
             cursor.execute("""
                         INSERT INTO data (title, company, location, salary, url, site_id, add_info)
                         VALUES (%s, %s, %s, %s, %s, %s, %s)
                         ON CONFLICT (url, title) DO NOTHING
                         """,
-                           (record['title'],
-                            record['company'],
-                            record['location'],
-                            record['salary'],
-                            record['url'],
-                            record['site_id'],
-                            record['add_info'])
+                           (record.title,
+                            record.company,
+                            record.location,
+                            record.salary,
+                            record.url,
+                            record.site_id,
+                            record.add_info)
                            )
+            if cursor.rowcount == 1:
+                inserted_offers.append(record)
         log.info("Data has been saved.")
 
         self.disconnect_from_database(conn, cursor, self.name)
+        return inserted_offers
 
     def reset_database(self):
         conn, cursor = self.connect_to_database(self.name)

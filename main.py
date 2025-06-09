@@ -30,6 +30,7 @@ def main():
 
     log.info("Formatting the scraped data")
     formatter = EmailFormatService()
+
     formatted_offers = formatter.format_job_offers_email(inserted_offers)
     log.info(f"Found {len(formatted_offers)} offers")
 
