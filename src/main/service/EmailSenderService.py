@@ -3,7 +3,7 @@ import os
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
-from logger_config import log
+from src.main.config.logger_config import log
 
 # Load environment variables
 load_dotenv()

@@ -1,5 +1,5 @@
 from typing import List
-from JobOffer import JobOffer
+from src.main.model.JobOffer import JobOffer
 from datetime import datetime
 
 class EmailFormatService:

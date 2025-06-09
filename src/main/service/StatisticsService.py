@@ -1,8 +1,8 @@
 from typing import Dict, List, Optional
 from collections import Counter, defaultdict
 import re
-from SupabaseService import DatabaseConfig
-from logger_config import log 
+from src.main.persistance.Supabase import DatabaseConfig
+from src.main.config.logger_config import log 
 
 class StatisticsService:
     """Service for generating statistics from job offer data"""

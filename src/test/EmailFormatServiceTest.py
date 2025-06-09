@@ -6,9 +6,9 @@ if project_root not in sys.path:
 
 import unittest
 from datetime import datetime
-from EmailFormatService import EmailFormatService
-from JobOffer import JobOffer
-from logger_config import log
+from src.main.service.EmailFormatService import EmailFormatService
+from src.main.model.JobOffer import JobOffer
+from src.main.config.logger_config import log
 
 class TestEmailFormatService(unittest.TestCase):
     

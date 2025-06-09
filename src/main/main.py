@@ -1,13 +1,13 @@
-from logger_config import log
+from src.main.config.logger_config import log
 
 from typing import List
 
-from ConfigLoader import ConfigLoader
-from ScraperService import ScraperService
-from JobOffer import JobOffer
-from EmailFormatService import EmailFormatService
-from EmailSenderService import EmailSenderService
-from SupabaseService import DatabaseConfig
+from src.main.config.ConfigLoader import ConfigLoader
+from src.main.service.ScraperService import ScraperService
+from src.main.model.JobOffer import JobOffer
+from src.main.service.EmailFormatService import EmailFormatService
+from src.main.service.EmailSenderService import EmailSenderService
+from src.main.persistance.Supabase import DatabaseConfig
 
 def main():
     log.info("Starting the scraping process")

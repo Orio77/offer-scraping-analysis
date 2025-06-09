@@ -1,10 +1,10 @@
 import customtkinter as ctk
-from SupabaseService import DatabaseConfig
-from logger_config import log
-from ConfigLoader import ConfigLoader
-from ScraperService import ScraperService
-from StatisticsService import StatisticsService
-from JobOffer import JobOffer
+from src.main.persistance.Supabase import DatabaseConfig
+from src.main.config.logger_config import log
+from src.main.config.ConfigLoader import ConfigLoader
+from src.main.service.ScraperService import ScraperService
+from src.main.service.StatisticsService import StatisticsService
+from src.main.model.JobOffer import JobOffer
 from typing import List
 import tkinter.font as tkfont
 import webbrowser

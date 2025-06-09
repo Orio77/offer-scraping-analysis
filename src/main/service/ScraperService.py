@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 from typing import List, Dict, Optional, Any
-from JobOffer import JobOffer
-from logger_config import log 
+from src.main.model.JobOffer import JobOffer
+from src.main.config.logger_config import log 
 from urllib.parse import urljoin, urlparse
 
 class ScraperService:

@@ -1,9 +1,9 @@
 import yaml
 from typing import List, Dict, Any
-from logger_config import log 
+from src.main.config.logger_config import log 
 
 class ConfigLoader:
-    def __init__(self, config_path='resources/config.yml'):
+    def __init__(self, config_path='src/resources/config.yml'):
         self.config_path = config_path
         self.config = self._load_config()
 

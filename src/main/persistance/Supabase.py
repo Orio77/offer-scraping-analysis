@@ -1,6 +1,6 @@
 import psycopg2
-from logger_config import log
-from JobOffer import JobOffer
+from src.main.config.logger_config import log
+from src.main.model.JobOffer import JobOffer
 from typing import List
 import os
 from dotenv import load_dotenv

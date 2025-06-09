@@ -5,10 +5,10 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 import unittest
-from EmailSenderService import EmailSenderService
-from JobOffer import JobOffer
-from EmailFormatService import EmailFormatService
-from logger_config import log
+from src.main.service.EmailSenderService import EmailSenderService
+from src.main.model.JobOffer import JobOffer
+from src.main.service.EmailFormatService import EmailFormatService
+from src.main.config.logger_config import log
 
 class TestEmailSenderService(unittest.TestCase):
     

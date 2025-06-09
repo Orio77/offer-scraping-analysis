@@ -7,7 +7,7 @@ if project_root not in sys.path:
 import unittest
 from unittest.mock import patch, mock_open
 import yaml
-from ConfigLoader import ConfigLoader 
+from src.main.config.ConfigLoader import ConfigLoader 
 
 class TestConfigLoader(unittest.TestCase):
 
