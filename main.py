@@ -7,7 +7,7 @@ from ScraperService import ScraperService
 from JobOffer import JobOffer
 from EmailFormatService import EmailFormatService
 from EmailSenderService import EmailSenderService
-from DatabaseConfig import DatabaseConfig
+from SupabaseService import DatabaseConfig
 
 def main():
     log.info("Starting the scraping process")
@@ -15,31 +15,28 @@ def main():
     log.info("Loading the configuration")
     config = ConfigLoader()
     websites = config.get_sites_config()
+    log.info(f"Loaded {len(websites)} websites from the configuration")
     
     log.info("Scraping the data")
     scraper = ScraperService(websites)
     offers: List[JobOffer] = scraper.scrape_all_sites()
+    log.info(f"Scraped {len(offers)} job offers from {len(websites)} websites")
+
+    log.info("Saving the data")
+    database = DatabaseConfig()
+    database.create_table()
+    inserted_offers = database.insert_data(offers)
+    log.info("Data has been saved to the database")
 
     log.info("Formatting the scraped data")
     formatter = EmailFormatService()
-    formatted_offers = formatter.format_job_offers_email(offers)
-    log.info(f"Found {len(offers)} offers")
-
-    log.info("Saving the data")
-
-    database = DatabaseConfig()
-    database.create_database()
-    database.create_table()
-    database.insert_data(offers)
-
-    # for element in database.read_data():
-    #     print(element)
-
-    log.info("Process completed successfully!")
+    formatted_offers = formatter.format_job_offers_email(inserted_offers)
+    log.info(f"Found {len(formatted_offers)} offers")
 
     log.info("Send emails")
     sender = EmailSenderService()
     sender.send_email(formatted_offers)
+    log.info("Emails have been sent")
 
 if __name__ == "__main__":
     main()

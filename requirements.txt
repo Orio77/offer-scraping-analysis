@@ -5,3 +5,4 @@ PyYAML==6.0.2
 lxml==5.4.0
 customtkinter==5.2.2
 psycopg2==2.9.10
+supabase==2.15.2
