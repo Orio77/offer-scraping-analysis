@@ -19,3 +19,12 @@ class JobOffer:
                 f"Salary: {self.salary}\n"
                 f"URL: {self.url}\n"
                 f"Additional Info: {self.add_info if self.add_info else 'N/A'}\n" + "-"*20)
+
+    def to_dict(self):
+        return {'site_id': self.site_id,
+                'title': self.title,
+                'company': self.company,
+                'location': self.location,
+                'salary': self.salary,
+                'url': self.url,
+                'add_info': self.add_info}

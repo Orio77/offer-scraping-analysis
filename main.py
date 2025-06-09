@@ -7,6 +7,7 @@ from ScraperService import ScraperService
 from JobOffer import JobOffer
 from EmailFormatService import EmailFormatService
 from EmailSenderService import EmailSenderService
+from DatabaseConfig import DatabaseConfig
 
 def main():
     log.info("Starting the scraping process")
@@ -22,8 +23,19 @@ def main():
     log.info("Formatting the scraped data")
     formatter = EmailFormatService()
     formatted_offers = formatter.format_job_offers_email(offers)
+    log.info(f"Found {len(offers)} offers")
 
     log.info("Saving the data")
+
+    database = DatabaseConfig()
+    database.create_database()
+    database.create_table()
+    database.insert_data(offers)
+
+    #for element in database.read_data():
+    #    print(element)
+
+    log.info("Process completed successfully!")
 
     log.info("Send emails")
     sender = EmailSenderService()
