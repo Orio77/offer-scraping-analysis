@@ -37,3 +37,4 @@ logs/
 
 # IntelliJ IDEA
 .idea/
+.idea/*

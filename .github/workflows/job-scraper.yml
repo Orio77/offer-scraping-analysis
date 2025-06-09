@@ -16,12 +16,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: Cache pip dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
@@ -44,12 +44,19 @@ jobs:
           echo "SMTP_SERVER=${{ secrets.SMTP_SERVER }}" >> .env
           echo "SMTP_PORT=${{ secrets.SMTP_PORT }}" >> .env
           echo "DEFAULT_SUBJECT=${{ secrets.DEFAULT_SUBJECT }}" >> .env
+          echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> .env
+          echo "SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}" >> .env
+          echo "SUPABASE_DB_HOST=${{ secrets.SUPABASE_DB_HOST }}" >> .env
+          echo "SUPABASE_DB_NAME=${{ secrets.SUPABASE_DB_NAME }}" >> .env
+          echo "SUPABASE_DB_USER=${{ secrets.SUPABASE_DB_USER }}" >> .env
+          echo "SUPABASE_DB_PASSWORD=${{ secrets.SUPABASE_DB_PASSWORD }}" >> .env
+          echo "SUPABASE_DB_PORT=${{ secrets.SUPABASE_DB_PORT }}" >> .env
 
       - name: Run job scraper
         run: python main.py
 
       - name: Upload logs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: scraper-logs-${{ github.run_number }}
