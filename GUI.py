@@ -3,10 +3,12 @@ from SupabaseService import DatabaseConfig
 from logger_config import log
 from ConfigLoader import ConfigLoader
 from ScraperService import ScraperService
+from StatisticsService import StatisticsService
 from JobOffer import JobOffer
 from typing import List
 import tkinter.font as tkfont
 import webbrowser
+import matplotlib.pyplot as plt
 
 
 class GUI:
@@ -45,7 +47,6 @@ class GUI:
         log.info("Saving the data")
 
         database = DatabaseConfig()
-        database.create_database()
         database.create_table()
         self.data += database.insert_data(offers)
         self.titles = [self.fix_text(offer.title) for offer in self.data]
@@ -92,8 +93,25 @@ class GUI:
             self.salary_entry.insert(0, offer.salary)
             self.salary_entry.configure(state="disabled")
 
-    def on_view_graph(self):
-        pass
+    def on_show_graph(self):
+        s_service = StatisticsService()
+        data = s_service.get_position_type_counts()
+
+        x = list(data.keys())
+        y = list(data.values())
+
+        plt.figure(figsize=(10, 6))
+        plt.bar(x, y, color='orange')
+
+        plt.title('Number of offers in different areas', fontsize=16)
+        plt.xlabel('Position', fontsize=12)
+        plt.ylabel('Number of offers', fontsize=12)
+
+        plt.xticks(rotation=45, ha="right")
+        plt.tight_layout()
+
+        plt.grid(axis='y', linestyle='--', alpha=0.7)
+        plt.show()
 
     def main_frame_setup(self):
         self.main_frame = ctk.CTkFrame(self.app, fg_color="transparent")
@@ -222,7 +240,7 @@ class GUI:
         settings_refresh_button = ctk.CTkButton(center_frame, text="Refresh offers", command=self.on_refresh, font=("Roboto", 12))
         settings_refresh_button.pack(pady=10)
 
-        view_graph_button = ctk.CTkButton(center_frame, text="Show graph", command=self.on_refresh, font=("Roboto", 12))
+        view_graph_button = ctk.CTkButton(center_frame, text="Show graph", command=self.on_show_graph, font=("Roboto", 12))
         view_graph_button.pack()
 
     def run(self):
