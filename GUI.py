@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from DatabaseConfig import DatabaseConfig
+from SupabaseService import DatabaseConfig
 from logger_config import log
 from ConfigLoader import ConfigLoader
 from ScraperService import ScraperService
