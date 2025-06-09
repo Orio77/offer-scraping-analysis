@@ -210,17 +210,19 @@ class GUI:
     def settings_setup(self):
         settings_frame = ctk.CTkFrame(self.details_container, border_width=2, corner_radius=0)
         settings_frame.grid(row=1, column=0, sticky="nsew", padx=0, pady=(10, 0))
-        settings_frame.grid_columnconfigure(0, weight=7)
-        settings_frame.grid_columnconfigure(1, weight=3)
+        settings_frame.grid_columnconfigure(0, weight=1)
         settings_frame.grid_rowconfigure(0, weight=1)
 
-        self.settings_status_label = ctk.CTkLabel(settings_frame, text=f"{self.number_of_offers} OFFERS FOUND", font=("Verdana", 28, "bold"))
-        self.settings_status_label.pack(pady=(20, 10))
+        center_frame = ctk.CTkFrame(settings_frame, fg_color="transparent")
+        center_frame.grid(row=0, column=0)
 
-        settings_refresh_button = ctk.CTkButton(settings_frame, text="Refresh offers", command=self.on_refresh, font=("Roboto", 12))
+        self.settings_status_label = ctk.CTkLabel(center_frame, text=f"{self.number_of_offers} OFFERS FOUND", font=("Verdana", 28, "bold"))
+        self.settings_status_label.pack()
+
+        settings_refresh_button = ctk.CTkButton(center_frame, text="Refresh offers", command=self.on_refresh, font=("Roboto", 12))
         settings_refresh_button.pack(pady=10)
 
-        view_graph_button = ctk.CTkButton(settings_frame, text="Show graph", command=self.on_refresh, font=("Roboto", 12))
+        view_graph_button = ctk.CTkButton(center_frame, text="Show graph", command=self.on_refresh, font=("Roboto", 12))
         view_graph_button.pack()
 
     def run(self):
