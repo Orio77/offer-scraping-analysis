@@ -9,7 +9,7 @@ from src.main.config.logger_config import log
 
 from typing import List
 
-from main.config.SitesConfigLoader import ConfigLoader
+from src.main.config.SitesConfigLoader import ConfigLoader
 from src.main.service.ScraperService import ScraperService
 from src.main.model.JobOffer import JobOffer
 from src.main.service.EmailFormatService import EmailFormatService
