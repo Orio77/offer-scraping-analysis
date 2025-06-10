@@ -4,6 +4,8 @@ on:
   schedule:
     # Run every day at 10:00 AM UTC (12:00 PM CET)
     - cron: "0 12 * * *"
+    # Run every day at 2:00 PM UTC (4:00 PM CET)
+    - cron: "0 14 * * *"
   # Allow manual triggering
   workflow_dispatch:
 
