@@ -2,8 +2,8 @@ name: Job Scraper Scheduler
 
 on:
   schedule:
-    # Run every day at 8:00 AM UTC (10:00 AM CET)
-    - cron: "0 8 * * *"
+    # Run every day at 10:00 AM UTC (12:00 PM CET)
+    - cron: "0 12 * * *"
   # Allow manual triggering
   workflow_dispatch:
 
@@ -51,9 +51,8 @@ jobs:
           echo "SUPABASE_DB_USER=${{ secrets.SUPABASE_DB_USER }}" >> .env
           echo "SUPABASE_DB_PASSWORD=${{ secrets.SUPABASE_DB_PASSWORD }}" >> .env
           echo "SUPABASE_DB_PORT=${{ secrets.SUPABASE_DB_PORT }}" >> .env
-
       - name: Run job scraper
-        run: python main.py
+        run: python src/main/main.py
 
       - name: Upload logs
         uses: actions/upload-artifact@v4

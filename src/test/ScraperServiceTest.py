@@ -2,18 +2,17 @@ import unittest
 import os
 import sys
 
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.insert(0, project_root)
 
 from src.main.service.ScraperService import ScraperService
-from src.main.config.ConfigLoader import ConfigLoader
+from src.main.config.SitesConfigLoader import ConfigLoader
 from src.main.model.JobOffer import JobOffer
 from src.main.config.logger_config import log
 
 class TestScraperService(unittest.TestCase):
 
-    CONFIG_PATH = 'resources/config.yml'
+    CONFIG_PATH = 'src/resources/config.yml'
     MAX_OFFERS_TO_CHECK_PER_SITE = 3
 
     @classmethod

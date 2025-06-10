@@ -3,8 +3,8 @@ from unittest.mock import MagicMock
 import sys
 import os
 
-# Add parent directory to path to import project modules
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.insert(0, project_root)
 
 from src.main.service.StatisticsService import StatisticsService
 from src.main.model.JobOffer import JobOffer

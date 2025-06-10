@@ -1,8 +1,15 @@
+import sys
+import os
+
+# Add the project root directory to Python path
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.insert(0, project_root)
+
 from src.main.config.logger_config import log
 
 from typing import List
 
-from src.main.config.ConfigLoader import ConfigLoader
+from main.config.SitesConfigLoader import ConfigLoader
 from src.main.service.ScraperService import ScraperService
 from src.main.model.JobOffer import JobOffer
 from src.main.service.EmailFormatService import EmailFormatService

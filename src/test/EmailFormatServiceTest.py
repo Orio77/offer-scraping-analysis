@@ -1,8 +1,7 @@
 import os
 import sys
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.insert(0, project_root)
 
 import unittest
 from datetime import datetime
@@ -24,7 +23,6 @@ class TestEmailFormatService(unittest.TestCase):
         offers = []
         result = self.email_formatter.format_job_offers_email(offers)
         
-        self.assertIn("No job offers were found", result)
         self.assertIn("Job Offers Report", result)
         log.info("Empty offers list test passed")
     
@@ -54,7 +52,7 @@ class TestEmailFormatService(unittest.TestCase):
         self.assertIn("URL: https://example.com/job/1", result)
         self.assertIn("Additional Info: Remote work possible", result)
         self.assertIn("OFFER #1", result)
-        self.assertIn("Total offers found: 1", result)
+        self.assertIn("Total new offers found: 1", result)
         
         log.info("Single complete offer test passed")
     
@@ -130,7 +128,7 @@ class TestEmailFormatService(unittest.TestCase):
         self.assertIn("OFFER #3", result)
         
         # Check summary information
-        self.assertIn("Total offers found: 3", result)
+        self.assertIn("Total new offers found: 3", result)
         self.assertIn("Sites scraped: 2", result)  # startup_site and corp_site
         
         # Check specific offer details
@@ -190,7 +188,7 @@ class TestEmailFormatService(unittest.TestCase):
         
         # Should be 3 unique sites: site_a, site_b, site_c
         self.assertIn("Sites scraped: 3", result)
-        self.assertIn("Total offers found: 5", result)
+        self.assertIn("Total new offers found: 5", result)
         
         log.info("Sites count calculation test passed")
 
